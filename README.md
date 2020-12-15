@@ -34,7 +34,7 @@ postgresql和postgis要一起安装，参考博客[PostGIS的安装与初步使�
 ```
 如`.\osmosis --read-xml file="D:\paper_code\dataset\penn_map\pennsylvania-latest.osm" --write-pgsimp database="penn" user="postgres" password="pgsql" host="localhost"`
 然后等待执行完毕。
-![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/osmosisImport.jpg)
+![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/InkedosmosisImport_LI.jpg)
 数据导入部分大功告成！
 
 # 参考文献：
