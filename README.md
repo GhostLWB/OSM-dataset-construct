@@ -4,7 +4,11 @@
 * 何为OpenStreetMap？
 >[OpenStreetMap](http://openstreetmap.org)是一个世界地图数据库，可以根据开放许可协议自由使用，通常可用于提取真实路网便于研究。OpenStreetMap的路网数据下载地址为：[OpenStreetMap data extracts](https://download.geofabrik.de/)，科学上网可使下载速度增加。
 * 何为Map格式的路网数据集？
->通常图的数据结构有三种存储方式，分别是邻接矩阵，邻接表和边集数组，Map格式其实就是边集数组。在Map格式的文本文件中，每一行代表一条边或者一条边上的所有POI记录。当该行代表边时，数据格式为：`开始节点ID 结束节点ID 边的长度 边所包含的POI数量` 详见[图的存储结构之边集数组](https://blog.csdn.net/qq_38158479/article/details/104394341)以及最常用的路网数据集[Real Datasets for Spatial Databases: Road Networks and Points of Interest](http://www.cs.utah.edu/~lifeifei/SpatialDataset.htm).
+>通常图的数据结构有三种存储方式，分别是邻接矩阵，邻接表和边集数组，Map格式其实就是边集数组。在Map格式的文本文件中，每一行代表一条边或者一条边上的所有POI记录。当该行代表边时，数据格式为：
+```
+开始节点ID 结束节点ID 边的长度 边所包含的POI数量
+```
+详见[图的存储结构之边集数组](https://blog.csdn.net/qq_38158479/article/details/104394341)以及最常用的路网数据集[Real Datasets for Spatial Databases: Road Networks and Points of Interest](http://www.cs.utah.edu/~lifeifei/SpatialDataset.htm).
 * 使用本代码之前要确保什么
 >本代码为python代码，因为通常路网数据集非常庞大，为了存储计算时所需节点数据，本代码需要结合postgresql数据库使用，并且使用osmosis将osm数据导入数据库中。下面是详细教程。
 # 安装postgresql
