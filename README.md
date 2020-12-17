@@ -16,29 +16,40 @@ postgresql和postgis要一起安装，参考博客[PostGIS的安装与初步使�
 
 # 在postgresql中创建数据库
 * 使用pgAdmin 4,在database右键->create->database ,命名Mymap_DB，记得在definition选项中的template选上模板为postgis_23_sample （注意：创建数据库时，要确定模板数据库不能处于连接状态）
+
 ![pic](https://img-blog.csdn.net/20171211113814162?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlsaV9za3k=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 使用osmosis导入osm数据
-* 下载openStreetMap地图源文件，下载地址：https://download.geofabrik.de/  ，在具体地图的页面选择Other Formats and Auxiliary Files，然后选择第一条：xxx-latest.osm.bz2,因为我们需要XML格式的数据，挂梯子下载速度更快
+* 下载openStreetMap地图源文件，下载地址：https://download.geofabrik.de/  ，在具体地图的页面选择Other Formats and Auxiliary Files，然后选择第一条：xxx-latest.osm.bz2,因为我们需要XML格式的数据。挂梯子下载速度更快
+
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/dfds.jpg)
+
 * 下载解压osmosis(下载地址：https://wiki.openstreetmap.org/wiki/Osmosis#Downloading  ），解压至任意文件夹即可
+
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/osmosisDownload.jpg)
+
 * 使用osmosis的脚本为pgsql数据库创建模板schema。首先找到osmosis的解压文件夹找到其script文件夹下的pgsimple_schema_0.6.sql脚本（路径为"D:\softwares\osmosis\script\pgsimple_schema_0.6.sql"），然后打开postgresql的安装目录找到bin文件夹 （D:\softwares\pgsql\bin），在这个文件夹中打开cmd，键入以下命令：
 ```
 .\psql.exe -d Mymap_DB -U postgres -W -f "D:\softwares\osmosis\script\pgsimple_schema_0.6.sql"
 ```
 (其中，Mymap_DB是你在postgresql中创建的数据库的名称，postgres是你的postgresql的用户名，-f后面接的是你的pgsimple_schema_0.6.sql脚本的文件路径。)
 接着输入口令，也就是postgres用户的密码，看到以下界面就成功了。
+
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/createscchema.jpg)
+
 同时可以在pgAdmin中看到数据库中多了很多表
+
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/dfresult.jpg)
+
 * 使用osmosis导入路网数据。打开osmosis的解压文件夹，找到bin文件夹（D:\softwares\osmosis\bin），然后在这个bin文件夹打开cmd，命令是：
 ```
 .\osmosis --read-xml file=[osm文件路径] --write-pgsimp database=[数据库名] user=[用户名] password=[密码] host="localhost"
 ```
 如`.\osmosis --read-xml file="D:\paper_code\dataset\penn_map\pennsylvania-latest.osm" --write-pgsimp database="penn" user="postgres" password="pgsql" host="localhost"`
 然后等待执行完毕。
+
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/InkedosmosisImport_LI.jpg)
+
 数据导入部分大功告成！
 
 # 参考文献：
