@@ -1,5 +1,7 @@
 # OSM-dataset-construct
 这是一个将OpenStreetMap格式的真实路网数据（.osm）解析并提取为Map格式的路网数据集的程序。
+
+目前已经解析的直接可用的路网数据集有：maine,mississippi,penn
 ## 先验知识
 * 何为OpenStreetMap？
 >[OpenStreetMap](http://openstreetmap.org)是一个世界地图数据库，可以根据开放许可协议自由使用，通常可用于提取真实路网便于研究。OpenStreetMap的路网数据下载地址为：[OpenStreetMap data extracts](https://download.geofabrik.de/)，科学上网可使下载速度增加。
@@ -51,6 +53,18 @@ postgresql和postgis要一起安装，参考博客[PostGIS的安装与初步使�
 ![](https://jiantuku-liwenbin.oss-cn-shanghai.aliyuncs.com/osmMapConstruct/InkedosmosisImport_LI.jpg)
 
 数据导入部分大功告成！
+# 使用本代码进行路网数据集提取
+建议使用jupyter notebook进行，打开./jupyter notebook/construct_map.ipynb，并按照每个cell顺序执行即可。
+
+处理过程包括：
+* 连接数据库
+* 根据关键词选出作为路径的way，新建一张表保存
+* 计算路径是否可以组成一个连通图
+* 选出作为结点的node，新建一张表保存
+* 记录每个node在记录中出现的频率，将用来确定是否作为路径交点（路网压缩要用）
+* 构建路网数据集主要代码方法定义
+* 无路网压缩版本
+* 有路网压缩版本
 
 # 参考文献：
 * 博客[PostGIS的安装与初步使用](https://blog.csdn.net/qq_35732147/article/details/81169961)
